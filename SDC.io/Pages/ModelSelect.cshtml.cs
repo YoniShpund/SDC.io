@@ -6,13 +6,13 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace SDC.io.Pages
 {
-    public class AboutModel : PageModel
+    public class AnalyzeModel : PageModel
     {
-        public string Message { get; set; }
+        public List<String> ModelList { get; set; }
 
         public void OnGet()
         {
-            Message = "Your application description page.";
+            ModelList = new List<string> { "en-de", "de-en" };
         }
     }
 }

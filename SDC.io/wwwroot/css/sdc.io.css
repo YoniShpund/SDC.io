@@ -20,8 +20,28 @@ body {
     }
 }
 
-.logo_image {
+table {
+    width: 100%;
+}
+
+th, td {
+    padding: 10px;
+}
+
+th {
+    text-align: right;
+}
+
+td {
+    text-align: left;
+}
+
+.center_alignment {
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+
+.input_field {
+    width: 150px;
 }

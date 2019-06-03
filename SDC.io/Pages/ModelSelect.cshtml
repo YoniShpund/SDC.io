@@ -1,0 +1,30 @@
+﻿@page
+@model AnalyzeModel
+@{
+    ViewData["Title"] = "Analyze";
+}
+
+<br />
+<div class="container" data-ng-app="ModelSelectApp" ng-controller="ModelSelectController">
+    <select class="form-control input_field center_alignment" id="ModelSelect" ng-change="DisplayModelData()" ng-model="DisplayIndex">
+        <option></option>
+        @foreach (String str in Model.ModelList)
+        {
+            <option>@str</option>
+        }
+    </select>
+    <br />
+
+    <table id="ModelDataDisplay">
+        <tr ng-repeat="param in Params">
+            <th class="input_field ">{{param}}: </th>
+            <td ng-bind={{param}} class="input_field"></td>
+        </tr>
+        <tr>
+            <th></th>
+            <td>
+                <a asp-page="/TextBrowse" class="btn btn-primary">Next</a>
+            </td>
+        </tr>
+    </table>
+</div>

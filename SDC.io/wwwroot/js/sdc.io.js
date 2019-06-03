@@ -1,4 +1,19 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
-
-// Write your Javascript code.
+﻿
+var ModelSelectApp = angular.module('ModelSelectApp', []);
+ModelSelectApp.controller('ModelSelectController', ['$scope', function ($scope) {
+    $scope.Params = [
+        "EncoderType",
+        "DecoderType",
+        "EncoderLayers",
+        "DecoderLayers",
+        "EncoderSize",
+        "DecoderSize",
+        "OptimizerType",
+        "LearningRate",
+        "Dropout"
+    ];
+    $scope.DisplayModelData = function () {
+        /*TODO: Add HTTP request to get the data of the model*/
+        $scope.OptimizerType += "ADAM";
+    };
+}]);
