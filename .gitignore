@@ -1,0 +1,16 @@
+# Visual Studio
+*.code-workspace
+.vscode
+.vscode/*
+.vscode/settings.json
+.vscode/tasks.json
+.vscode/launch.json
+.vscode/extensions.json
+.vs/
+.vscode-test/**
+.vscode-test
+**/.vscode/.ropeproject/**
+
+
+# output folder:
+output/
