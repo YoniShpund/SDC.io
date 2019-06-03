@@ -15,7 +15,6 @@ SDC.io/obj/*
 **/obj/**
 bin/
 SDC.io/bin/*
-*.csproj
 
 # output folder:
 output/
