@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=100%, initial-scale=1.0" />
     <link rel=icon href=~/favicon.ico>
-    <title>@ViewData["Title"] - SDC.io</title>
+    <title>SDC.io</title>
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -18,7 +18,7 @@
     </environment>
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <!--nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -31,21 +31,19 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-page="/ModelSelect">Analyze</a></li>
+                    <li><a asp-page="/Analyze">Analyze</a></li>
                     <li><a asp-page="/Create">Create Model</a></li>
                 </ul>
             </div>
         </div>
-    </nav>
+    </nav-->
 
-    <div class="container body-content">
+    <div class="container body-content" data-ng-app="OverallApp" ng-controller="OverallController">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; 2019 - SDC.io</p>
-        </footer>
     </div>
-
+    <footer>
+        <p>&copy; 2019 - SDC.io</p>
+    </footer>
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
