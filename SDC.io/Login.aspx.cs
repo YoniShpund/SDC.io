@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace WebApplication1
+namespace SDC.io
 {
     public partial class Login : System.Web.UI.Page
     {
@@ -26,6 +26,11 @@ namespace WebApplication1
             {
                 this.Master.FindControl("LoginAlertMessage").Visible = true;
             }
+        }
+
+        protected void Register(object sender, EventArgs e)
+        {
+            Response.Redirect("Register.aspx");
         }
     }
 }

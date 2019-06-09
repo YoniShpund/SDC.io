@@ -28,8 +28,40 @@ OverallApp.controller('OverallController', ['$scope', function ($scope) {
 
     $scope.ModelNames = ["en-de", "de-en"];
 
-    $scope.DisplayModelData = function () {
-        /*TODO: Add HTTP request to get the data of the model*/
-        $scope.OptimizerType = "ADAM";
-    };
 }]);
+
+/* On change of browse button, the name of the file appears */
+$(document).ready(function () {
+    $(".custom-file-input").on("change", function () {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+
+        /*var client = new XMLHttpRequest();
+        client.open('GET', $(this).val());
+        client.onreadystatechange = function () {
+            $("#Textarea" + $(this).attr('id').charAt($(this).attr('id').length - 1)).text(client.responseText);
+        }
+        client.send();
+
+        $(this).load($(this).val(), function (responseTxt, statusTxt, xhr) {
+            $("#Textarea" + $(this).attr('id').charAt($(this).attr('id').length - 1)).text(responseTxt);
+            //event.target.id[event.target.id])
+        });
+
+        fr = new FileReader();
+        fr.onload = function () {
+            $("#Textarea" + $(this).attr('id').charAt($(this).attr('id').length - 1)).text(fr.result);
+            //event.target.id[event.target.id])
+        };
+        fr.readAsDataURL($(this).val());
+        $.data({
+            type: "GET",
+            url: $(this).val(),
+            dataType: "text",
+            success: function (html) {
+                $("#Textarea" + $(this).attr('id').charAt($(this).attr('id').length - 1)).text(html);
+                //event.target.id[event.target.id])
+            }
+        });*/
+    });
+});

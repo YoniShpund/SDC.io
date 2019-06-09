@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace WebApplication1
+namespace SDC.io
 {
     public partial class SDCio : System.Web.UI.MasterPage
     {
@@ -13,7 +13,7 @@ namespace WebApplication1
         {
             ((Control)LoginAlertMessage).Visible = false;
 
-            if (Page.Title.Equals("Login"))
+            if (Page.Title.Equals("Login") || Page.Title.Equals("Register"))
             {
                 LogoutButton.Visible = false;
 

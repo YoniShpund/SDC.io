@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Security;
 using System.Web.SessionState;
 
-namespace WebApplication1
+namespace SDC.io
 {
     public class Global : System.Web.HttpApplication
     {

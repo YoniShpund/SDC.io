@@ -10,36 +10,33 @@
 namespace SDC.io {
     
     
-    public partial class Login {
+    public partial class Register {
         
         /// <summary>
-        /// LoginMail control.
+        /// RegisterEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox LoginMail;
+        protected global::System.Web.UI.WebControls.TextBox RegisterEmail;
         
         /// <summary>
-        /// LoginPassword control.
+        /// RegisterPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox LoginPassword;
+        protected global::System.Web.UI.WebControls.TextBox RegisterPassword;
         
         /// <summary>
-        /// Master property.
+        /// RegisterPasswordCheck control.
         /// </summary>
         /// <remarks>
-        /// Auto-generated property.
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        public new SDC.io.SDCio Master {
-            get {
-                return ((SDC.io.SDCio)(base.Master));
-            }
-        }
+        protected global::System.Web.UI.WebControls.TextBox RegisterPasswordCheck;
     }
 }

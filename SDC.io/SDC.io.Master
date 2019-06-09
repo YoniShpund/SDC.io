@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="SDC.io.Master.cs" Inherits="WebApplication1.SDCio" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="SDC.io.Master.cs" Inherits="SDC.io.SDCio" %>
 
 <!DOCTYPE html>
 
