@@ -15,6 +15,7 @@ SDC.io/obj/*
 **/obj/**
 bin/
 SDC.io/bin/*
+packages/
 
 # output folder:
 output/
