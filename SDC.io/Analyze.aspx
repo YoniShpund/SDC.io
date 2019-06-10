@@ -30,7 +30,7 @@
             <table class="container">
                 <tr>
                     <td class="td_for_select_field">
-                        <select class="form-control input_field " id="ModelDetails" ng-options="ModelInList for ModelInList in ModelNames" ng-model="ModelName" style="width: 144px; float: right; margin-right: 10px;">
+                        <select class="form-control input_field custom-select" id="ModelDetails" ng-options="ModelInList for ModelInList in ModelNames" ng-model="ModelName" style="width: 144px; float: right; margin-right: 10px;">
                         </select>
                     </td>
                     <td>
