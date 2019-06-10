@@ -41,9 +41,11 @@
         <div style="float: right;">
             <asp:Button runat="server" CssClass="btn btn-info btn-sm" ID="LogoutButton" OnClick="Logout" Text="Logout"></asp:Button>
         </div>
+        <br /><br /><br />
         <asp:ContentPlaceHolder ID="ContentMaster" runat="server">
         </asp:ContentPlaceHolder>
-        <div runat="server" class="alert alert-dismissible alert-danger" id="LoginAlertMessage">
+        <br />
+        <div runat="server" class="alert alert-dismissible alert-danger container center_alignment" id="LoginAlertMessage" style="width: 500px;">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
             <strong>Oh snap!</strong> One of the parameters are wrong, please try again.
         </div>

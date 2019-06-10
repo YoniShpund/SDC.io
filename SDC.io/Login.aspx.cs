@@ -11,7 +11,7 @@ namespace SDC.io
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            this.Master.FindControl("LoginAlertMessage").Visible = false;
         }
 
         protected void LoginSubmit(object sender, EventArgs e)
