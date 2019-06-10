@@ -8,10 +8,12 @@ using System.Web.UI.WebControls;
 
 namespace SDC.io
 {
-    public partial class Analyze : System.Web.UI.Page
+    public partial class Analyze : Page
     {
 
         protected string ResultDzv { get; set; }
+        protected string ResultZv { get; set; }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["User"] == null)
@@ -37,15 +39,20 @@ namespace SDC.io
             ((Control)MoveToResultsButton).Visible = true;
             /*********************************************************/
 
+
+            /******************Just for debug*************************/
             string imagepath = @"D:\SDC.io\SDC.io\images\SDC.io.logo.png";
             FileStream fs = new FileStream(imagepath, FileMode.Open);
             byte[] byData = new byte[fs.Length];
             fs.Read(byData, 0, byData.Length);
             fs.Close();
+            /******************Just for debug*************************/
+
 
             /*Use this function to convert bytes to string*/
             ResultDzv = ConvertByteArrayToString(byData);
-            
+            ResultZv = ConvertByteArrayToString(byData);
+
             /**
              * Trigger the modal to show.
              * MUST be last.

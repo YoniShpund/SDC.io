@@ -77,9 +77,14 @@
         <!--
         Analyze Process Results Parameters
         -->
-        <article class="container" id="ResultsArticle" style="display: none;">
-            <div class="center_alignment">
-                <img src="<%=ResultDzv %>" />
+        <article class="container" id="ResultsArticle" style="display: none; width: 350px;">
+            <div class="form-group">
+                <label>DZV Result:</label>
+                <img src="<%=ResultDzv %>" class="center_alignment" /><br />
+            </div>
+            <div class="form-group">
+                <label>ZV Result:</label>
+                <img src="<%=ResultZv %>" class="center_alignment" />
             </div>
         </article>
 
