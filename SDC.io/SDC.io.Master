@@ -35,13 +35,16 @@
                         <a class="nav-link" href="About.aspx">About</a>
                     </li>
                 </ul>
+                <div class="form-inline my-2 my-lg-0">
+                    <asp:Button runat="server" CssClass="btn btn-info btn-sm" ID="LogoutButton" OnClick="Logout" Text="Logout"></asp:Button>
+                </div>
             </div>
         </nav>
         <br />
-        <div style="float: right;">
-            <asp:Button runat="server" CssClass="btn btn-info btn-sm" ID="LogoutButton" OnClick="Logout" Text="Logout"></asp:Button>
-        </div>
-        <br /><br /><br />
+
+        <br />
+        <br />
+        <br />
         <asp:ContentPlaceHolder ID="ContentMaster" runat="server">
         </asp:ContentPlaceHolder>
         <br />

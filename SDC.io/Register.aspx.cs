@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Data.SqlClient;
 using System.Text.RegularExpressions;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace SDC.io
 {
     public partial class Register : System.Web.UI.Page
     {
+        SqlConnection SqlConnect = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=SDC.io.DB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -66,27 +64,18 @@ namespace SDC.io
                 }
 
                 /********************************************************
-                 * TODO: Update database with new user.
+                 * Update database with new user.
                  ********************************************************/
-
-
-                /********************************************************/
+                SqlConnect.Open();
+                SqlCommand cmd = SqlConnect.CreateCommand();
+                cmd.CommandType = System.Data.CommandType.Text;
+                cmd.CommandText = "insert into Users values('" + RegisterEmail.Text + "', '" + RegisterPassword.Text + "')";
+                cmd.ExecuteNonQuery();
+                SqlConnect.Close();
 
                 /*On Success move to login page.*/
                 Response.Redirect("Login.aspx");
             } while (false);
-        }
-
-        protected void RegisterPasswordTextChanged(object sender, EventArgs e)
-        {
-            if (RegisterPassword.Text.Equals(RegisterPasswordCheck.Text))
-            {
-                RegisterPasswordCheck.CssClass = "form-control is-valid";
-            }
-            else
-            {
-                RegisterPasswordCheck.CssClass = "form-control is-invalid";
-            }
         }
     }
 }
