@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
 
@@ -67,8 +68,20 @@ namespace SDC.io
                  * Update database with new user.
                  ********************************************************/
                 SqlConnect.Open();
+                DataTable dataTable = new DataTable();
                 SqlCommand cmd = SqlConnect.CreateCommand();
                 cmd.CommandType = System.Data.CommandType.Text;
+                cmd.CommandText = "select * from Users where Email='" + RegisterEmail.Text + "';";
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(cmd);
+                dataAdapter.Fill(dataTable);
+                dataAdapter.Dispose();
+
+                if (0 != dataTable.Rows.Count)
+                {
+                    RegisterEmail.CssClass = "form-control  is-invalid";
+                    break;
+                }
+
                 cmd.CommandText = "insert into Users values('" + RegisterEmail.Text + "', '" + RegisterPassword.Text + "')";
                 cmd.ExecuteNonQuery();
                 SqlConnect.Close();

@@ -17,10 +17,10 @@ namespace SDC.io
             DataTable dataTable = new DataTable();
             SqlConnect.Open();
             SqlCommand cmd = SqlConnect.CreateCommand();
-            cmd.CommandText = "select * from Users";
+            cmd.CommandText = "select * from Users where Email='" + LoginMail.Text + "';";
 
             SqlDataAdapter dataAdapter = new SqlDataAdapter(cmd);
-            // this will query your database and return the result to your datatable
+            // this will query the database and return the result of the datatable
             dataAdapter.Fill(dataTable);
             SqlConnect.Close();
             dataAdapter.Dispose();
