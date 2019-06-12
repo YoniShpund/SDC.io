@@ -16,6 +16,7 @@ SDC.io/obj/*
 bin/
 SDC.io/bin/*
 packages/
-
+*.pt
+*.json
 # output folder:
 output/
