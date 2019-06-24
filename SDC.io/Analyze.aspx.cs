@@ -55,36 +55,57 @@ namespace SDC.io
             }/*End of --> foreach (string model in ModelFiles)*/
         }/*End of --> protected void Page_Load(object sender, EventArgs e)*/
 
+        private void ClearFile(string inptuFileName)
+        {
+            var tempFileName = Path.GetTempFileName();
+            try {
+                using (var streamReader = new StreamReader(inptuFileName))
+                using (var streamWriter = new StreamWriter(tempFileName)) {
+                    string line;
+                    while ((line = streamReader.ReadLine()) != null) {
+                        if (!string.IsNullOrWhiteSpace(line))
+                            streamWriter.WriteLine(line);
+                    }
+                }
+                File.Copy(tempFileName, inptuFileName, true);
+            }
+            finally {
+                File.Delete(tempFileName);
+            }
+        }
+
         private void OnBackgroundWorkerDoWork(object sender, DoWorkEventArgs e)
         {
             if ((TextFileUpload1.PostedFile != null) && (TextFileUpload1.PostedFile.ContentLength > 0)) {
                 string SaveLocation = Server.MapPath("PythonScripts") + "\\in1.txt";
                 TextFileUpload1.PostedFile.SaveAs(SaveLocation);
+                ClearFile(SaveLocation);
             }/*End of --> if ((TextFileUpload1.PostedFile != null) && (TextFileUpload1.PostedFile.ContentLength > 0))*/
 
             if ((TextFileUpload2.PostedFile != null) && (TextFileUpload2.PostedFile.ContentLength > 0)) {
                 string SaveLocation = Server.MapPath("PythonScripts") + "\\in2.txt";
                 TextFileUpload2.PostedFile.SaveAs(SaveLocation);
+                ClearFile(SaveLocation);
             }/*End of --> if ((TextFileUpload1.PostedFile != null) && (TextFileUpload1.PostedFile.ContentLength > 0))*/
 
             string strErr;
             string res;
-            
+
             /*Run first ZV analysis on original texts*/
             var args = $"-fi \"{AppContext.BaseDirectory + @"PythonScripts\in1.txt"}\" -si \"{AppContext.BaseDirectory + @"PythonScripts\in2.txt"}\" -dir {Server.MapPath("PythonScripts")} -name first_result";
-            //res = RunCmd(@"C:\Users\shpun\Anaconda3\python.exe", AppContext.BaseDirectory + @"PythonScripts\zv.py", args, out var strErr);
+            res = RunCmd(@"C:\Users\shpun\Anaconda3\python.exe", AppContext.BaseDirectory + @"PythonScripts\zv.py", args, out strErr);
 
             /*Modify the percentage of the progress bar.*/
             ProgressPercentage.Style.Add("width", "25%");
 
             /*Run translation on original texts*/
-            args = $"-fi \"{AppContext.BaseDirectory + @"Models\" + ModelDetails.SelectedValue + @".pt"}\" -src \"{AppContext.BaseDirectory + @"PythonScripts\in1.txt"}\" -output \"{AppContext.BaseDirectory + @"PythonScripts\pred1.txt"}\" -replace_unk";
+            args = $"-model \"{AppContext.BaseDirectory + @"Models\" + ModelDetails.SelectedValue + @".pt"}\" -src \"{AppContext.BaseDirectory + @"PythonScripts\in1.txt"}\" -output \"{AppContext.BaseDirectory + @"PythonScripts\pred1.txt"}\" -replace_unk";
             res = RunCmd(@"C:\Users\shpun\Anaconda3\python.exe", AppContext.BaseDirectory + @"PythonScripts\translate.py", args, out strErr);
 
             /*Modify the percentage of the progress bar.*/
             ProgressPercentage.Style.Add("width", "50%");
 
-            args = $"-fi \"{AppContext.BaseDirectory + @"Models\" + ModelDetails.SelectedValue + @".pt"}\" -src \"{AppContext.BaseDirectory + @"PythonScripts\in2.txt"}\" -output \"{AppContext.BaseDirectory + @"PythonScripts\pred2.txt"}\" -replace_unk";
+            args = $"-model \"{AppContext.BaseDirectory + @"Models\" + ModelDetails.SelectedValue + @".pt"}\" -src \"{AppContext.BaseDirectory + @"PythonScripts\in2.txt"}\" -output \"{AppContext.BaseDirectory + @"PythonScripts\pred2.txt"}\" -replace_unk";
             res = RunCmd(@"C:\Users\shpun\Anaconda3\python.exe", AppContext.BaseDirectory + @"PythonScripts\translate.py", args, out strErr);
 
             /*Modify the percentage of the progress bar.*/
@@ -92,7 +113,7 @@ namespace SDC.io
 
             /*Run second ZV analysis on translated texts*/
             args = $"-fi \"{AppContext.BaseDirectory + @"PythonScripts\pred1.txt"}\" -si \"{AppContext.BaseDirectory + @"PythonScripts\pred2.txt"}\" -dir {Server.MapPath("PythonScripts")} -name second_result";
-            //res = RunCmd(@"C:\Users\shpun\Anaconda3\python.exe", AppContext.BaseDirectory + @"PythonScripts\zv.py", args, out var strErr);
+            res = RunCmd(@"C:\Users\shpun\Anaconda3\python.exe", AppContext.BaseDirectory + @"PythonScripts\zv.py", args, out strErr);
 
             /*Modify the percentage of the progress bar.*/
             ProgressPercentage.Style.Add("width", "100%");
