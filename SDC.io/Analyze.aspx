@@ -94,14 +94,14 @@
         <!--
         Analyze Process Results Parameters
         -->
-        <article class="container" id="ResultsArticle" style="display: none; width: 350px;">
+        <article class="container" id="ResultsArticle" style="display: none; text-align: center;">
             <div class="form-group">
-                <label>DZV Result:</label>
-                <img src="<%=ResultDzv %>" class="center_alignment" /><br />
+                <h2><strong>Before Conversion</strong>:</h2>
+                <img src="<%=ResultBefore %>" class="" style="width: 80%; height: auto;" />
             </div>
             <div class="form-group">
-                <label>ZV Result:</label>
-                <img src="<%=ResultZv %>" class="center_alignment" />
+                <h2><strong>After Conversion</strong>:</h2>
+                <img src="<%=ResultAfter %>" class="" style="width: 80%; height: auto;" />
             </div>
         </article>
 

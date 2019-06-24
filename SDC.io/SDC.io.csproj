@@ -103,7 +103,6 @@
     <Content Include="inc\sdc.io.js" />
     <Content Include="Login.aspx" />
     <Content Include="Models\Model_en2de.pt" />
-    <Content Include="PythonScripts\in.txt" />
     <Content Include="Register.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>

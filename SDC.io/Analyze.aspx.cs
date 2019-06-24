@@ -11,8 +11,8 @@ namespace SDC.io
 {
     public partial class Analyze : Page
     {
-        protected string ResultDzv { get; set; }
-        protected string ResultZv { get; set; }
+        protected string ResultBefore { get; set; }
+        protected string ResultAfter { get; set; }
 
         //CancellationTokenSource cancellationTokenSource;
 
@@ -126,24 +126,26 @@ namespace SDC.io
             }/*End of --> if (e.Cancelled || e.Error != null)*/
 
             MoveToResultsButton.Visible = true;
+
+            string imagepath = AppContext.BaseDirectory + @"PythonScripts\first_result.png";
+            FileStream fs = new FileStream(imagepath, FileMode.Open);
+            byte[] byData = new byte[fs.Length];
+            fs.Read(byData, 0, byData.Length);
+            ResultBefore = ConvertByteArrayToString(byData);
+            fs.Close();
+
+            imagepath = AppContext.BaseDirectory + @"PythonScripts\second_result.png";
+            fs = new FileStream(imagepath, FileMode.Open);
+            byData = new byte[fs.Length];
+            fs.Read(byData, 0, byData.Length);
+            ResultAfter = ConvertByteArrayToString(byData);
+            fs.Close();
+
         }/*End of --> private void OnBackgroundWorkerRunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)*/
 
         protected void StartAnalyze(object sender, EventArgs e)
         {
             MoveToResultsButton.Visible = false;
-
-            /******************Just for debug*************************/
-            string imagepath = @"D:\SDC.io\SDC.io\images\SDC.io.logo.png";
-            FileStream fs = new FileStream(imagepath, FileMode.Open);
-            byte[] byData = new byte[fs.Length];
-            fs.Read(byData, 0, byData.Length);
-            fs.Close();
-            /******************Just for debug*************************/
-
-
-            /*Use this function to convert bytes to string*/
-            ResultDzv = ConvertByteArrayToString(byData);
-            ResultZv = ConvertByteArrayToString(byData);
 
             /*Modify the percentage of the progress bar.*/
             ProgressPercentage.Style.Add("width", "10%");
