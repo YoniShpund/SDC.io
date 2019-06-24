@@ -18,5 +18,7 @@ SDC.io/bin/*
 packages/
 *.pt
 *.json
+*.txt
+*.png
 # output folder:
 output/
