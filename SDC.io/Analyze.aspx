@@ -1,6 +1,7 @@
-﻿<%@ Page Title="Analyze" Language="C#" MasterPageFile="~/SDC.io.Master" AutoEventWireup="true" CodeBehind="Analyze.aspx.cs" Inherits="SDC.io.Analyze" %>
+﻿<%@ Page Title="Analyze" Language="C#" MasterPageFile="~/SDC.io.Master" AutoEventWireup="true" CodeBehind="Analyze.aspx.cs" Inherits="SDC.io.Analyze" Async="true" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script src="inc/canvasjs.min.js"></script>
     <script src="inc/angular.min.js"></script>
     <script src="inc/sdc.io.js"></script>
 </asp:Content>
@@ -14,6 +15,22 @@
                 <tr ng-repeat="param in ModelParams">
                     <th class="input_field" style="text-align: right;">{{param.Name}}: </th>
                     <td ng-bind="{{param.ngModel}}" class="input_field"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <div id="chartAccuracy" style="height: 400px; width: 100%;"></div>
+                    </td>
+                    <td>
+                        <div id="chartTrainLoss" style="height: 400px; width: 100%;"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div id="chartCrossEntropy" style="height: 400px; width: 100%;"></div>
+                    </td>
+                    <td>
+                        <div id="chartLearningRate" style="height: 400px; width: 100%;"></div>
+                    </td>
                 </tr>
                 <tr>
                     <th style="font-weight: normal; text-align: right;">
@@ -30,8 +47,8 @@
             <table class="container">
                 <tr>
                     <td class="td_for_select_field">
-                        <select class="form-control input_field custom-select" id="ModelDetails" ng-options="ModelInList for ModelInList in ModelNames" ng-model="ModelName" style="width: 144px; float: right; margin-right: 10px;">
-                        </select>
+                        <asp:DropDownList runat="server" CssClass="form-control input_field custom-select" ID="ModelDetails" ng-model="ModelName" Style="width: 144px; float: right; margin-right: 10px;">
+                        </asp:DropDownList>
                     </td>
                     <td>
                         <button ng-click="move('AnalyzeParamsArticle', 'ModelDetailsArticle')" style="float: left;">More Details</button>
@@ -39,29 +56,29 @@
                 </tr>
                 <tr>
                     <td style="padding: 15px;">
-                        <div class="form-group center_alignment" hidden="">
+                        <div class="form-group center_alignment">
                             <div class="input-group mb-3">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="TextFileUpload1">
+                                    <input runat="server" type="file" class="custom-file-input" id="TextFileUpload1">
                                     <label class="custom-file-label" for="TextFileUpload1">Choose File</label>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <asp:TextBox runat="server" CssClass="form-control" ID="Textarea1" Rows="30" TextMode="MultiLine" Style="resize: none;" placeholder="Please enter the text here..."></asp:TextBox>
+                            <textarea class="form-control" id="Textarea1" rows="30" style="resize: none;" readonly placeholder="Please enter the text here..."></textarea>
                         </div>
                     </td>
                     <td style="padding: 15px;">
-                        <div class="form-group center_alignment" hidden="">
+                        <div class="form-group center_alignment">
                             <div class="input-group mb-3">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="TextFileUpload2">
+                                    <input runat="server" type="file" class="custom-file-input" id="TextFileUpload2">
                                     <label class="custom-file-label" for="TextFileUpload1">Choose File</label>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <asp:TextBox runat="server" CssClass="form-control" ID="TextBox2" Rows="30" TextMode="MultiLine" Style="resize: none;" placeholder="Please enter the text here..."></asp:TextBox>
+                            <textarea class="form-control" id="Textarea2" rows="30" style="resize: none;" readonly placeholder="Please enter the text here..."></textarea>
                         </div>
                     </td>
                 </tr>
@@ -102,7 +119,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="progress">
-                            <asp:Panel runat="server" CssClass="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100" Style="width: 75%" ID="ProgressPercentage"></asp:Panel>
+                            <asp:Panel runat="server" CssClass="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100" Style="width: 90%" ID="ProgressPercentage"></asp:Panel>
                         </div>
                     </div>
                     <div class="modal-footer">

@@ -97,11 +97,13 @@
     <Content Include="inc\angular.min.js" />
     <Content Include="inc\bootstrap.min.css" />
     <Content Include="inc\bootstrap.min.js" />
+    <Content Include="inc\canvasjs.min.js" />
     <Content Include="inc\jquery-2.0.0.min.js" />
     <Content Include="inc\sdc.io.css" />
     <Content Include="inc\sdc.io.js" />
     <Content Include="Login.aspx" />
     <Content Include="Models\Model_en2de.pt" />
+    <Content Include="PythonScripts\in.txt" />
     <Content Include="Register.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -154,9 +156,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Models\Model_en-de.json" />
+    <Content Include="Models\Model_en2de.json" />
     <None Include="packages.config" />
     <Content Include="SDC.io.Master" />
+    <Content Include="PythonScripts\translate.py" />
+    <Content Include="PythonScripts\zv.py" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

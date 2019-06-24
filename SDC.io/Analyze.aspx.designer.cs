@@ -13,22 +13,31 @@ namespace SDC.io {
     public partial class Analyze {
         
         /// <summary>
-        /// Textarea1 control.
+        /// ModelDetails control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Textarea1;
+        protected global::System.Web.UI.WebControls.DropDownList ModelDetails;
         
         /// <summary>
-        /// TextBox2 control.
+        /// TextFileUpload1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox2;
+        protected global::System.Web.UI.HtmlControls.HtmlInputFile TextFileUpload1;
+        
+        /// <summary>
+        /// TextFileUpload2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputFile TextFileUpload2;
         
         /// <summary>
         /// ProgressPercentage control.
