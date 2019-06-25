@@ -9,7 +9,7 @@ This project implements a WEB Site that visualizes the detection of numerous wri
 
 The project contains two important requirements:
 1. First, and a very significant part is the [Multiple Writing Style Detector](https://github.com/romanglo/multiple-writing-style-detector) package. This package is created mainly for the use of this project, and implements a solution of detecting numerous writing styles in a text.
-1. Next is the [OpenNMT-py](https://github.com/OpenNMT/OpenNMT-py) package which is use to translate the source texts into another writing style.
+1. Next is the [OpenNMT-py](https://github.com/OpenNMT/OpenNMT-py) package which is used to translate the source texts into another writing style.
 
 Both of the package are installed using the following steps:
 1. Download the packages to the local computer.
