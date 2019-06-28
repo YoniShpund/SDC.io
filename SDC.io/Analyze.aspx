@@ -44,6 +44,7 @@
         Analyze Process Select Parameters
         -->
         <article class="container" id="AnalyzeParamsArticle">
+            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#infoModal" style="width: 5px; text-align: center; float: right; border-radius: 50px;"><strong>?</strong></button>
             <table class="container">
                 <tr>
                     <td class="td_for_select_field">
@@ -94,14 +95,36 @@
         <!--
         Analyze Process Results Parameters
         -->
-        <article class="container" id="ResultsArticle" style="display: none; text-align: center;">
+        <article class="container" id="ResultsArticle" style="display: none; text-align: center; width: 100%">
             <div class="form-group">
                 <h2><strong>Before Conversion</strong>:</h2>
-                <img src="<%=ResultBefore %>" class="" style="width: 80%; height: auto;" />
+                <table>
+                    <tr>
+                        <td style="height: auto;">
+                            <img src="<%=ResultBefore %>" style="width: 90%;" />
+                        </td>
+                    </tr>
+                </table>
             </div>
             <div class="form-group">
                 <h2><strong>After Conversion</strong>:</h2>
-                <img src="<%=ResultAfter %>" class="" style="width: 80%; height: auto;" />
+                <table>
+                    <tr>
+                        <td style="height: auto;">
+                            <img src="<%=ResultAfter %>" style="width: 90%;" />
+                        </td>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <td>
+                            <asp:TextBox runat="server" CssClass="form-control" ReadOnly="true" TextMode="MultiLine" Rows="20" ID="AfterFirstText" Style="resize: none;"></asp:TextBox>
+                        </td>
+                        <td>
+                            <asp:TextBox runat="server" CssClass="form-control" ReadOnly="true" TextMode="MultiLine" Rows="20" ID="AfterSecondText" Style="resize: none;"></asp:TextBox>
+                        </td>
+                    </tr>
+                </table>
             </div>
         </article>
 
@@ -125,6 +148,39 @@
                     <div class="modal-footer">
                         <button ng-click="move('AnalyzeParamsArticle', 'ResultsArticle')" runat="server" id="MoveToResultsButton" data-dismiss="modal">See Results</button>
                         <asp:Button runat="server" CssClass="btn btn-secondary" Text="Close" OnClick="StopProcess"></asp:Button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal" id="infoModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">HOW TO</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="height: 100%;">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            In order to analyze documents, a model must be chosen.
+                        </p>
+                        <p>
+                            Please follow the next steps:
+                        </p>
+                        <p>
+                            1. Choose a model from the drop down list.
+                        </p>
+                        <p>
+                            2. Upload two documents that you want to analyze.
+                        </p>
+                        <p>
+                            3. Press the "<strong>Start</strong>" button, and wait for the results display.
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
                     </div>
                 </div>
             </div>

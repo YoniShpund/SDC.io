@@ -40,6 +40,24 @@ namespace SDC.io {
         protected global::System.Web.UI.HtmlControls.HtmlInputFile TextFileUpload2;
         
         /// <summary>
+        /// AfterFirstText control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox AfterFirstText;
+        
+        /// <summary>
+        /// AfterSecondText control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox AfterSecondText;
+        
+        /// <summary>
         /// ProgressPercentage control.
         /// </summary>
         /// <remarks>

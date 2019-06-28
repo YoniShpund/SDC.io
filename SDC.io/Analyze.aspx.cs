@@ -141,6 +141,8 @@ namespace SDC.io
             ResultAfter = ConvertByteArrayToString(byData);
             fs.Close();
 
+            AfterFirstText.Text = File.ReadAllText(AppContext.BaseDirectory + @"PythonScripts\pred1.txt");
+            AfterSecondText.Text = File.ReadAllText(AppContext.BaseDirectory + @"PythonScripts\pred2.txt");
         }/*End of --> private void OnBackgroundWorkerRunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)*/
 
         protected void StartAnalyze(object sender, EventArgs e)
@@ -153,21 +155,18 @@ namespace SDC.io
 
             /**********************************************************
              * Analyze the texts.
-             * use the above line to modify the percentage
              *********************************************************/
-
-            /**
-              * Trigger the modal to show.
-              * MUST be last.
-              */
-            ClientScript.RegisterStartupScript(GetType(), "Show", "<script> $('#myModal').modal('toggle');</script>");
-
             m_backgroundWorker = new BackgroundWorker();
             m_backgroundWorker.WorkerSupportsCancellation = true;
             m_backgroundWorker.DoWork += new DoWorkEventHandler(OnBackgroundWorkerDoWork);
             m_backgroundWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(OnBackgroundWorkerRunWorkerCompleted);
             m_backgroundWorker.RunWorkerAsync();
             /*********************************************************/
+           /**
+              * Trigger the modal to show.
+              * MUST be last.
+              */
+            ClientScript.RegisterStartupScript(GetType(), "Show", "<script> $('#myModal').modal('toggle');</script>");
         }/*End of --> protected void StartAnalyze(object sender, EventArgs e)*/
 
         protected void StopProcess(object sender, EventArgs e)
