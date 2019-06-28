@@ -96,6 +96,7 @@
         Analyze Process Results Parameters
         -->
         <article class="container" id="ResultsArticle" style="display: none; text-align: center; width: 100%">
+            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#legendModal" style="width: 5px; text-align: center; float: right; border-radius: 50px;"><strong>?</strong></button>
             <div class="form-group">
                 <h2><strong>Before Conversion</strong>:</h2>
                 <table>
@@ -129,7 +130,7 @@
         </article>
 
         <!--
-        Modal popup
+        Modal popups
         -->
         <div class="modal" id="myModal">
             <div class="modal-dialog" role="document">
@@ -152,7 +153,6 @@
                 </div>
             </div>
         </div>
-
         <div class="modal" id="infoModal">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -178,6 +178,34 @@
                         <p>
                             3. Press the "<strong>Start</strong>" button, and wait for the results display.
                         </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal" id="legendModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Results</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="height: 100%;">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            On this screen you can observe the results of the analysis of the texts that you inserted.
+                        </p>
+                        <p>
+                            The "<strong>DZV Distance</strong>" show the distances matrix between the texts.
+                        </p>
+                        <p>
+                            If the matrix is symetric, that means that the texts are identical.
+                        </p>
+                        <br />
+                        <p><strong>NOTE!</strong> The translation of the inputed texts is displayed in the bottom of the page.</p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
