@@ -10,7 +10,7 @@
         <abbr title="Sequence to sequence">seq2seq</abbr>
             translation model, with global attention mechanism, to convert a document to a different writing style. The study also shows teaching mode for a network with backpropagation algorithm. The bidirectional Recurrent Neural Network with a
             <abbr title="Sequence to sequence">Seq2Seq</abbr>
-            model, improved other models' methodologies for style conversion and reached a BLEU score <strong>greater by 25%</strong>. Moreover, with the human evaluated metrics, we could observe that our bidirectional
+            model, improved other models' methodologies for style conversion. Moreover, with the human evaluated metrics, we could observe that our bidirectional
             <abbr title="Sequence to sequence">Seq2Seq</abbr>
             model performed better than our simple attentive
             <abbr title="Sequence to sequence">Seq2Seq</abbr>
