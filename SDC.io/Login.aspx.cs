@@ -6,7 +6,7 @@ namespace SDC.io
 {
     public partial class Login : System.Web.UI.Page
     {
-        SqlConnection SqlConnect = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=SDC.io.DB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+
         protected void Page_Load(object sender, EventArgs e)
         {
             this.Master.FindControl("LoginAlertMessage").Visible = false;
@@ -15,6 +15,7 @@ namespace SDC.io
         protected void LoginSubmit(object sender, EventArgs e)
         {
             DataTable dataTable = new DataTable();
+            SqlConnection SqlConnect = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=SDC.io.DB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
             SqlConnect.Open();
             SqlCommand cmd = SqlConnect.CreateCommand();
             cmd.CommandText = "select * from Users where Email='" + LoginMail.Text + "';";
@@ -25,10 +26,8 @@ namespace SDC.io
             SqlConnect.Close();
             dataAdapter.Dispose();
 
-            foreach (DataRow row in dataTable.Rows)
-            {
-                if (LoginMail.Text.Equals(row["Email"]) && LoginPassword.Text.Equals(row["Password"]))
-                {
+            foreach (DataRow row in dataTable.Rows) {
+                if (LoginMail.Text.Equals(row["Email"]) && LoginPassword.Text.Equals(row["Password"])) {
                     Session["user"] = LoginMail.Text;
                     Response.Redirect("Default.aspx");
                     this.Master.FindControl("LoginAlertMessage").Visible = false;

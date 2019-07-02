@@ -81,7 +81,6 @@
       <DependentUpon>SDC.io.DB.mdf</DependentUpon>
     </Content>
     <Content Include="App_Data\SDC.io.DB.mdf" />
-    <Content Include="favicon.ico" />
     <Content Include="images\favicon.ico" />
     <Content Include="images\SDC.io.logo.png" />
     <Content Include="Default.aspx" />
