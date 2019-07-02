@@ -33,7 +33,7 @@ Both of the package are installed using the following steps:
     python setup.py install
     ```
 
-
+1. Open the solution in Visual Studio and connect the DB.
 
 ## Authors
 
