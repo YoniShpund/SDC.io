@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 
@@ -55,6 +56,23 @@ namespace SDC.io
             }/*End of --> foreach (string model in ModelFiles)*/
         }/*End of --> protected void Page_Load(object sender, EventArgs e)*/
 
+        private string CleanInput(string strIn)
+        {
+            // Replace invalid characters with empty strings.
+            try {
+                byte[] utf8Bytes = System.Text.Encoding.UTF8.GetBytes(strIn);
+
+                // Convert utf-8 bytes to a string.
+                return System.Text.Encoding.UTF8.GetString(utf8Bytes);
+                //return Regex.Replace(strIn, @"[^\w\.@-,]", " ",
+                //                     RegexOptions.None, TimeSpan.FromSeconds(1.5));
+            }
+            // If we timeout when replacing invalid characters, 
+            // we should return Empty.
+            catch (Exception) {
+                return " ";
+            }
+        }
         private void ClearFile(string inptuFileName)
         {
             var tempFileName = Path.GetTempFileName();
@@ -64,7 +82,7 @@ namespace SDC.io
                     string line;
                     while ((line = streamReader.ReadLine()) != null) {
                         if (!string.IsNullOrWhiteSpace(line))
-                            streamWriter.WriteLine(line);
+                            streamWriter.WriteLine(CleanInput(line));
                     }
                 }
                 File.Copy(tempFileName, inptuFileName, true);
@@ -162,10 +180,10 @@ namespace SDC.io
             m_backgroundWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(OnBackgroundWorkerRunWorkerCompleted);
             m_backgroundWorker.RunWorkerAsync();
             /*********************************************************/
-           /**
-              * Trigger the modal to show.
-              * MUST be last.
-              */
+            /**
+               * Trigger the modal to show.
+               * MUST be last.
+               */
             ClientScript.RegisterStartupScript(GetType(), "Show", "<script> $('#myModal').modal('toggle');</script>");
         }/*End of --> protected void StartAnalyze(object sender, EventArgs e)*/
 

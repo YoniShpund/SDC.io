@@ -1,14 +1,13 @@
 from __future__ import unicode_literals
 
 import argparse
+import codecs
+import json
 import logging
 import os
 import sys
-import codecs
-import json
 
 import mwsd
-from mwsd.visualize import visualize
 
 DEFAULT_VERBOSE = True
 DEFAULT_SAVE_OUTPUT = True
@@ -51,6 +50,13 @@ def read_arguments(argv):
         default="mwsd_result",
         help="Output files name")
     ap.add_argument(
+        "-mp",
+        "--model_path",
+        type=str,
+        default=None,
+        required=False,
+        help="The path to word2vec model")
+    ap.add_argument(
         "-v",
         "--verbose",
         type=bool,
@@ -71,8 +77,12 @@ def initialize_logging_config(logging_level):
         level=logging_level)
 
 
-def process(first_input, second_input, save_output, output_dir, file_name):
+def process(first_input, second_input, save_output, output_dir, model_path,
+            file_name):
     mwsd.initialize()
+
+    model_path = None if (not model_path
+                          or not os.path.isfile(model_path)) else model_path
 
     if not os.path.isfile(first_input):
         raise IOError(
@@ -81,35 +91,23 @@ def process(first_input, second_input, save_output, output_dir, file_name):
         raise IOError(
             "Second input file does not exist: {}".format(second_input))
 
+    model = None if not model_path else mwsd.word2vec.load_model(
+        model_path, keyed_vectors=True, binary=True)
+
     first_text, second_text = mwsd.utils.read_text_from_files(
         [first_input, second_input], encoding='utf-8')
 
-    ZV, DZV, medoids = mwsd.execute(first_text, second_text)
+    ZV, DZV, clustering_result = mwsd.execute(first_text, second_text, model)
 
-    plot_saving_path = os.path.join(output_dir,
-                                    f'{file_name}.png') if save_output else None
+    plot_saving_path = os.path.join(
+        output_dir, f'{file_name}.png') if save_output else None
 
-    visualize(
-        ZV, DZV, medoids, show_plot=False, plot_saving_path=plot_saving_path)
-
-    if (save_output):
-        result = {
-            'zv': ZV.tolist(),
-            'dzv': DZV.tolist(),
-            'medoids': [{
-                'elements': [element.tolist() for element in medoid.elements],
-                'kernal': medoid.kernel.tolist()
-            } for medoid in medoids]
-        }
-
-        json.dump(
-            result,
-            codecs.open(
-                os.path.join(output_dir, f'{file_name}.json'),
-                'w',
-                encoding='utf-8'),
-            sort_keys=True,
-            indent=4)
+    mwsd.visualize_algorithm_result(
+        ZV,
+        DZV,
+        clustering_result,
+        show_plot=False,
+        plot_saving_path=plot_saving_path)
 
 
 def main(args):
@@ -117,7 +115,7 @@ def main(args):
         initialize_logging_config(
             logging.DEBUG if args['verbose'] else logging.INFO)
         process(args['first_input'], args['second_input'], args['save_output'],
-                args['output_dir'], args["output_name"])
+                args['output_dir'], args['model_path'], args["output_name"])
     except KeyboardInterrupt:
         logging.info("Process aborted by the user!")
     except Exception:
